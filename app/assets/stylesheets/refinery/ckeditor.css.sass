@@ -1,0 +1,73 @@
+@mixin constant-width( $width )
+  width: $width
+  min-width: $width
+  max-width: $width
+
+#page_part_body, #page_part_side_body
+  width: 100%
+#page_part_body 
+  textarea
+    +constant-width( 65% )
+#page_part_side_body 
+  textarea
+    +constant-width( 30% )
+
+.ui-tabs-nav
+  float: left
+  margin-left: 4px
+  li
+    margin-bottom: 0
+  
+#page_part_editors
+  float: left
+  display: block
+  width: 100%
+
+// rightbar
+
+.rightbar
+  float: left
+  width: 286px
+  margin-left: 9px
+  margin-top: -39px
+  .ui-tabs-nav
+    float: left
+    margin-bottom: 0
+
+#cke_page_parts_attributes_0_body, #cke_page_parts_attributes_1_body, #page_part_body, #page_part_side_body
+  float: left
+
+#images_container, #files_container
+  float: left
+  clear: left
+  width: 100%
+  height: 400px
+  overflow-y: auto
+  border: 1px solid lightGrey
+  padding: 5px
+#images_container
+  li
+    float: left
+    margin: 0px 6px 10px 0px
+    border: 2px solid #fcfcfc
+    font-size: .9em
+.box_of_holding
+  width: 125px
+  height: 125px
+  overflow: hidden
+  
+#files_container
+  li
+    &:nth-child(odd)
+      background: #EAEAEA
+  a
+    display: block
+    padding: 6px 6px 6px 26px
+    background: transparent image_url('refinery/ckeditor/pdf.png') no-repeat 4px center
+
+//
+
+table.cke_editor
+  tr
+    &:hover
+      background: none
