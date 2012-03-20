@@ -9,7 +9,9 @@ module Refinery
         private
 
         def cells
-          Dir['app/cells/*.rb'].each { |f| require f }
+          Dir['app/cells/*.rb'].each do |path|
+            require File.basename(path, ".rb")
+          end
           cells = Cell::Base.descendants - [Cell::Rails]
           cells.inject([]) do |array, klass|
             klass.action_methods.each do |action|
