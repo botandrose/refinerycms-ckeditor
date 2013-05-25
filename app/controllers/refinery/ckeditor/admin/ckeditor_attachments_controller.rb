@@ -4,8 +4,15 @@ module Refinery
       class CkeditorAttachmentsController < ::Refinery::AdminController
 
         def dialog_images
-          @images = Refinery::Image.paginate(:page => params[:page], :per_page => Image.per_page(true, true))
+          @images = Refinery::Image.paginate(:page => params[:page], :per_page => Refinery::Image.per_page(true, true))
 
+          respond_to do |format|
+            format.js
+          end
+        end
+
+        def dialog_resources
+          @resources = Refinery::Resource.paginate(:page => params[:page], :per_page => Refinery::Resource.per_page(true))
           respond_to do |format|
             format.js
           end
@@ -22,10 +29,20 @@ module Refinery
           end
         end
 
+        def add_resources
+          if params[:ckeditor]
+            @resources = Refinery::Resource.where(:id => params[:ckeditor][:resource_ids])
+            @editor = params[:ckeditor][:editor]
+          end
+          respond_to do |format|
+            format.js
+          end
+        end
+
         protected
 
         def restrict_controller
-          # super unless action_name == 'insert'
+          return true
         end
 
 

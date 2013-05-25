@@ -38,9 +38,4 @@
     </div>
   <% end %>
 
-<div class='form-actions form-actions-dialog'>
-  <div class='form-actions-left'>
-    <%= submit_tag(t(:button_text, :scope => [:refinery, :admin, :images, :existing_image]), :onclick => "$.post('#{ckeditor_admin_ckeditor_attachments_add_images_path}', $('#ajax_modal input').serialize())", :class => 'button') %>
-    <%= link_to(t(:cancel, :scope => [:refinery, :admin, :dialogs, :show]), "#close_dialog", :class => "close_dialog button", :onclick => 'close_dialog()') %>
-  </div>
-</div>
+<%= render(:partial => 'modal_form_actions', :locals => {:submit_path => ckeditor_admin_ckeditor_attachments_add_images_path}) %>

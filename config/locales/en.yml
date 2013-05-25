@@ -2,4 +2,6 @@ en:
   ckeditor:
     label_ckeditor_resize_image: 'Select size'
     button_ckeditor_add_image: 'Add image'
+    button_ckeditor_add_resource: 'Přidat soubor'
     title_ckeditor_add_image: 'Choose image'
+    title_ckeditor_add_resource: 'Vybrat soubor'

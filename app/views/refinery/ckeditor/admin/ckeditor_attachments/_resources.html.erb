@@ -1,0 +1,23 @@
+<%= hidden_field_tag('ckeditor[editor]', params[:for_editor]) %>
+
+<div class="clearfix">
+  <% group_by_date(@resources).each do |container|
+       date = Date.parse((resource_group = container.last).first.created_at.to_s) %>
+    <h3><%= l(date, :format => :long ) %></h3>
+    <ul id="ckeditor_" class="ckeditor-select-attachments">
+      <% resource_group.each do |resource| %>
+        <li class="clearfix record <%= cycle('on', 'on-hover') %>">
+          <%= check_box_tag('ckeditor[resource_ids][]', resource.id, false, :id => "ckeditor_resource_#{resource.id}", :onchange => "$(this).closest('li').toggleClass('selected');") %>
+          <label class="title <%= resource.ext.try(:downcase) %>" for="<%= "ckeditor_resource_#{resource.id}" %>">
+            <%= resource.title %><%= ".#{resource.ext}" if resource.ext %>
+            <span class="preview">- <%= number_to_human_size(resource.size) %></span>
+          </label>
+        </li>
+      <% end -%>
+    </ul>
+  <% end %>
+</div>
+
+<%= will_paginate(@resources, :renderer => Refinery::CKEditor::WillPaginateRemoteLinkRenderer) %>
+
+<%= render(:partial => 'modal_form_actions', :locals => {:submit_path => ckeditor_admin_ckeditor_attachments_add_resources_path}) %>

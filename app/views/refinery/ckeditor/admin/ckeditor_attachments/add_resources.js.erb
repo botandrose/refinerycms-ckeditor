@@ -1,0 +1,6 @@
+<% @resources && @resources.each do |resource| %>
+  CKEDITOR.instances['<%= @editor %>'].insertHtml('&nbsp;<%=j link_to(resource.file_name,
+                resource.url,
+                :title => t('.download', :size => number_to_human_size(resource.size))) %>&nbsp;');
+<% end %>
+close_dialog();

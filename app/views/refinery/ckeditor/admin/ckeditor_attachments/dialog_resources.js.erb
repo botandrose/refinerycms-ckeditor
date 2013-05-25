@@ -1,0 +1,11 @@
+if (!$("#ajax_modal").is("*")) {
+  ajaxModal = $("<div />").attr({id: "ajax_modal", "class": "dialog"});
+} else {
+  ajaxModal = $("#ajax_modal");
+}
+
+
+ajaxModal.html("<%=j render(:partial => 'resources') %>");
+<% if params[:page].nil? %>
+  ajaxModal.dialog({modal:true, width: "80%", title: "<%= t(:title_ckeditor_add_resource, :scope => [:ckeditor]) %>"});
+<% end %>
