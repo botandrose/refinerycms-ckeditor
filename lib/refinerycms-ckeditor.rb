@@ -1,4 +1,5 @@
 require "refinery/ckeditor/version"
+require "refinery/ckeditor/will_paginate_remote_link_renderer"
 
 module Refinery
   module CKEditor

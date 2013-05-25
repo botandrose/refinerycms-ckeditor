@@ -1,0 +1,46 @@
+<%= hidden_field_tag('ckeditor[editor]', params[:for_editor]) %>
+<div class="clearfix">
+  <ul class="ckeditor-select-attachments">
+    <% @images.each do |image| %>
+      <li>
+        <%= check_box_tag('ckeditor[image_ids][]', image.id, false, :id => "ckeditor_image_id_#{image.id}", :onchange => "$(this).closest('li').toggleClass('selected');") %>
+        <%= label_tag("ckeditor_image_id_#{image.id}", image_fu(image, '150x150')) %>
+      </li>
+    <% end -%>
+  </ul>
+</div>
+
+<%= will_paginate(@images, :renderer => Refinery::CKEditor::WillPaginateRemoteLinkRenderer) %>
+
+<% unless @images.empty? %>
+    <div id="existing_image_size_area" class="clearfix">
+      <%= content_tag(:strong, t(:label_ckeditor_resize_image, :scope => [:ckeditor])) %>
+      <ul>
+        <%
+          Refinery::Images.user_image_sizes.sort_by { |key, geometry| geometry.to_i }.each_with_index do |(size, pixels), index|
+            safe_pixels = pixels.to_s.gsub(/[<>=]/, '')
+            # (parndt): ' selected' if size.to_s == 'medium' is not very generic, but I
+            # can't think of a decent way of making it so for even sets (e.g. 2,4,6,8,etc image sizes).
+        -%>
+            <li id="image_dialog_size_<%= index %>" class="image_dialog_size<%= ' selected' if size.to_s == 'medium' %>">
+              <%= radio_button_tag('ckeditor[image_size]', size, size.to_s == 'medium', :id => "ckeditor_image_size_#{size}", :onchange => "$(this).closest('ul').find('li').removeClass('selected');$(this).closest('li').toggleClass('selected');") %>
+              <label for="<%= "ckeditor_image_size_#{size}" %>">
+                <%= link_to(size.to_s, "##{size}",
+                                        :'data-geometry' => pixels,
+                                        :'data-size' => size.to_s.parameterize,
+                                        :title   => "#{size} image (#{safe_pixels})",
+                                        :tooltip => "#{size} image (#{safe_pixels})",
+                                        :onclick => "$(this).closest('li').find('input').attr('checked', true).change()") %>
+              </label>
+            </li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end %>
+
+<div class='form-actions form-actions-dialog'>
+  <div class='form-actions-left'>
+    <%= submit_tag(t(:button_text, :scope => [:refinery, :admin, :images, :existing_image]), :onclick => "$.post('#{ckeditor_admin_ckeditor_attachments_add_images_path}', $('#ajax_modal input').serialize())", :class => 'button') %>
+    <%= link_to(t(:cancel, :scope => [:refinery, :admin, :dialogs, :show]), "#close_dialog", :class => "close_dialog button", :onclick => 'close_dialog()') %>
+  </div>
+</div>

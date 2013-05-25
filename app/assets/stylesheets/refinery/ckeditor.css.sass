@@ -7,10 +7,7 @@
   width: 100%
 #page_part_body, #page_part_new_0
   textarea
-    +constant-width( 65% )
-#page_part_side_body, #page_part_new_1
-  textarea
-    +constant-width( 40% )
+    +constant-width( 99% )
 
 .ui-tabs-nav
   float: left
@@ -67,6 +64,34 @@
     display: block
     padding: 6px 6px 6px 26px
     background: transparent image_url('refinery/ckeditor/pdf.png') no-repeat 4px center
+.ckeditor-contextual
+  float: right
+  margin-top: -30px
+
+  a[class*=icon]
+    padding-left: 20px
+    background-repeat: no-repeat
+#ajax_modal
+  padding: 0 20px 50px 20px
+  #existing_image_size_area
+    margin: 10px
+    input
+      display: none
+
+  ul.ckeditor-select-attachments
+    li
+      display: inline-block
+      margin: 3px 5px
+      padding: 5px
+      border: 1px solid #eee
+      text-align: center
+      input
+        display: none
+      img
+        margin: auto
+        border: 2px solid #ccc
+      &.selected, #existing_image_size_area li.selected a
+        background-color: #22A7F2
 
 //
 

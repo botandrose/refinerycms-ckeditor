@@ -1,0 +1,4 @@
+<% @images && @images.each do |image| %>
+  CKEDITOR.instances['<%= @editor %>'].insertHtml('<%=j image_fu(image, @size) %>');
+<% end %>
+close_dialog();

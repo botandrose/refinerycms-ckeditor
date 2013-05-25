@@ -1,0 +1,5 @@
+en:
+  ckeditor:
+    label_ckeditor_resize_image: 'Select size'
+    button_ckeditor_add_image: 'Add image'
+    title_ckeditor_add_image: 'Choose image'
