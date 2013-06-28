@@ -21,7 +21,7 @@ module Refinery
         def add_images
           if params[:ckeditor]
             @images = Refinery::Image.where(:id => params[:ckeditor][:image_ids])
-            @size = Refinery::Images.user_image_sizes[params[:ckeditor][:image_size].to_sym]
+            @size = Refinery::Images.user_image_sizes[params[:ckeditor][:image_size].to_sym] if params[:ckeditor][:enable_resize]
             @editor = params[:ckeditor][:editor]
           end
           respond_to do |format|

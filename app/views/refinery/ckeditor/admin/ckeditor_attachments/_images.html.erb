@@ -13,7 +13,11 @@
 <%= will_paginate(@images, :renderer => Refinery::CKEditor::WillPaginateRemoteLinkRenderer) %>
 
 <% unless @images.empty? %>
-    <div id="existing_image_size_area" class="clearfix">
+    <p>
+      <%= check_box_tag('ckeditor[enable_resize]', true, false, :onchange => "$('#existing_image_size_area').toggle()") %>
+      <%= label_tag(:ckeditor_enable_resize, t(:label_ckeditor_enable_resize, :scope => [:ckeditor]), :class => 'input_label') %>
+    </p>
+    <div id="existing_image_size_area" class="clearfix" style="display:none">
       <%= content_tag(:strong, t(:label_ckeditor_resize_image, :scope => [:ckeditor])) %>
       <ul>
         <%
