@@ -1,0 +1,8 @@
+fr:
+  ckeditor:
+    label_ckeditor_resize_image: 'Choisir la taille'
+    label_ckeditor_enable_resize: 'Redimensionner ?'
+    button_ckeditor_add_image: 'Ajouter une image'
+    button_ckeditor_add_resource: 'Ajouter un fichier'
+    title_ckeditor_add_image: 'Sélectionner une image'
+    title_ckeditor_add_resource: 'Sélectionner un fichier'
