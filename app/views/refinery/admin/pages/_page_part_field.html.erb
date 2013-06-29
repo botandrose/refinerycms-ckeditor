@@ -1,37 +1,9 @@
 <div class="page_part" id="<%= new_part ? "page_part_new_#{part_index}" : part.to_param %>">
+  <p class="ckeditor-contextual">
+    <%= link_to(t(:button_ckeditor_add_image, :scope => [:ckeditor]), ckeditor_admin_ckeditor_attachments_dialog_images_path(:for_editor => "page_parts_attributes_#{part_index}_body"), :remote => true, :class => 'add_icon', :title => t(:title_ckeditor_add_image, :scope => [:ckeditor])) %>
+    <%= link_to(t(:button_ckeditor_add_resource, :scope => [:ckeditor]), ckeditor_admin_ckeditor_attachments_dialog_resources_path(:for_editor => "page_parts_attributes_#{part_index}_body"), :remote => true, :class => 'add_icon', :title => t(:title_ckeditor_add_resource, :scope => [:ckeditor])) %>
+  </p>
   <%= hidden_field_tag "page[parts_attributes][#{part_index}][title]", part.title if new_part %>
-  <%= text_area_tag "page[parts_attributes][#{part_index}][body]", part.body, :rows => 20, :class => "wysiwyg widest", :data => { :body_class => part.to_param } %>
+  <%= text_area_tag "page[parts_attributes][#{part_index}][body]", part.body, :rows => 40, :class => "wysiwyg widest", :data => { :body_class => part.to_param } %>
   <%= hidden_field_tag "page[parts_attributes][#{part_index}][position]", part_index if new_part %>
-
-  <div class="rightbar">
-    <ul>
-      <li><%= link_to "Images", "#images_container" %></li>
-      <li><%= link_to "Files", "#files_container" %></li>
-    </ul>
-
-    <div id="files_container">
-      <p>
-        <b>Drag and drop these files into the editor:</b>
-      </p>
-      <ul>
-        <% Refinery::Resource.all.each do |resource| %>
-          <li><%= link_to resource.title, resource.url %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div id="images_container">
-      <p>
-        <b>Drag and drop these images into the editor:</b>
-      </p>
-      <ul>
-        <% Refinery::Image.all.each do |image| %>
-          <li>
-            <div class="box_of_holding"><%= image_tag image.url %></div>
-            <%= image.title %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
 </div>

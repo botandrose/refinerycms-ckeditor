@@ -1,0 +1,8 @@
+cs:
+  ckeditor:
+    label_ckeditor_resize_image: 'Vybrat velikost'
+    label_ckeditor_enable_resize: 'Změnit velikost?'
+    button_ckeditor_add_image: 'Přidat obrázek'
+    button_ckeditor_add_resource: 'Přidat soubor'
+    title_ckeditor_add_image: 'Vybrat obrázek'
+    title_ckeditor_add_resource: 'Vybrat soubor'
