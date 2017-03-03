@@ -21,7 +21,7 @@ CKEDITOR.plugins.add('formatpainter',
                             flag = false;
                         } else {
                             if (styleString.length == 0) {
-                                styleString = 'font-family:times new roman,times,serif;font-size:16px;'
+                                styleString = 'font-family:Roboto, sans-serif;font-size:14px;'
                             }
 
                             var selectedText = selection.getNative();
